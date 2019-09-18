@@ -1,4 +1,6 @@
+
 from os import chdir, mkdir, path, remove
+import argparse
 from pickle import dump
 from sklearn.preprocessing import minmax_scale
 from typing import Callable
@@ -9,10 +11,13 @@ from SemanticAnalysis import subset_selection, subset_correlation, greedy_signal
 from Plotter import plot_j1979, plot_signals_by_arb_id, plot_signals_by_cluster
 from PipelineTimer import PipelineTimer
 
+parser = argparse.ArgumentParser(description='CAN Reverse Engineering')
+parser.add_argument("-i", "--input", type=str, default='drive_runway_afit.log', help="Input CAN log filea.", metavar='FILE')
+args = parser.parse_args()
+
 # File names for the on-disc data input and output.
 # Input:
-can_data_filename:          str = 'drive_runway_afit.log'
-# can_data_filename:          str = 'loggerProgram0.log'
+can_data_filename:          str = args.input
 
 # Output:
 output_folder:              str = 'output'
